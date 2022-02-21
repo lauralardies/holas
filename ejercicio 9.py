@@ -1,3 +1,5 @@
+# Ejercicio 9 Parte 1 :
+
 Algoritmo indice_palabra
   # Creamos un algoritmo que da una lista de palabras que empiezan por una letra dada. 
   # Como las palabrasd el diccionario están ordenadas alfabéticamente, el algoritmo solo tiene que recorrer la tabla hasta encontrar las palabras que comienzan con la inicial dada.
@@ -17,37 +19,50 @@ precondicion
   esta_definido(diccionario)
   indice_valido(diccionario, inicio)
 
-constante 
-  I_MIN : ENTERO ← indice_min(diccionario)
-  I_MAX : ENTERO ← indice_max(diccionario)
-  AUSENTE : ENTERO ← ???
+variable
+    i, j : ENTERO
 
-variable 
-  i : ENTERO # Indice de la siguiente celda a observar 
+inicialización
+    i ← inicio
+        # Índice de la siguiente celda a observar
+    j ← siguiente[i]
+        # Índice de la palabra que sigue a la de índice i en orden
+    Resultado ← AUSENTE # Todavía no ha encontrado nada
 
-inicializacion 
-  i ← I_MIN 
-  Resultado = AUSENTE # Todavía no se ha encontrado nada
+realización
+  mientras que
+    ítem(diccionario[i], 1) < inicial y entonces j ≠ I_MIN
+    invariante
+      se han observado las palabras de índice inicio siguiente[inicio], …,anterior[i]. 
+      Resultado = AUSENTE
+      j = siguiente[i]
+    variante de control
+      ???
+  repetir
+    afirmación
+      se han observado las palabras de índice inicio, siguiente[inicio], …,anterior[i] e i.
+      Resultado = AUSENTE
 
-realizacion 
-  mientras que 
-    i ≤ I_MAX et Resultado = AUSENTE
-    invariante 
-      (∀k ∈ ℤ)(I_MIN ≤ k < i => Resultado = AUSENTE <=> (∀k ∈ ℤ)(I_MIN ≤ k < i => ítem(diccionario[k], 1) ≠ inicial)
-    variante 
-      I_MAX – i + 1
-  repetir 
-    si 
-      ítem(diccionario[i], 1) = inicial
-    entonces 
-      afirmacion
-      i ≤ I_MAX (∀k ∈ ℤ)(I_MIN ≤ k < i => Resultado = AUSENTE) et ítem(diccionario[i], 1) = inicial
-      Resultado ← i
-      afirmacion 
-        i ≤ I_MAX
-        Resultado = i ≠ AUSENTE
-    fin si
+    i ← j
+    afirmación
+      se han observado las palabras de índice inicio, siguiente[inicio], …,anterior[i].
+      Resultado = AUSENTE
+      j = i
+
+    j ← siguiente[i]
+    afirmación
+      se han observado las palabras de índice inicio, siguiente[inicio], …,anterior[i].
+      Resultado = AUSENTE
+      j = siguiente[i]
   fin repetir
+# ítem(diccionario[i], 1) ≥ inicial o si no j = I_MIN
+# ítem(diccionario[i], 1) > inicial o si no j = I_MIN => Resultado = AUSENTE
+# ítem(diccionario[i], 1) = inicial => Resultado ≠ AUSENTE
+  si
+    ítem(diccionario[i], 1) = inicial
+  entonces
+    Resultado ← i
+  fin si
 
 postcondicion 
   # AUSENTE si no hay palabra con la inicial 'inicial' en sub_tabla(diccionario, inicio, índice_max(diccionario))
@@ -63,3 +78,16 @@ postcondicion
     (
       inicio ≤ Resultado ≤ índice_max(diccionario) y ítem(diccionario[Resultado], 1) = inicial
     )
+
+fin indice_palabra 
+
+# Ejercicio 9 Parte 2 :
+# Definimos el tipo PALABRA y modificiamos el algoritmo anterior
+
+tipo PALABRA estructura
+  anterior : ENTERO
+  # El índice de la palabra que precede a esta palabra
+  siguiente : ENTERO
+  # El índice de la palabra siguiente
+  palabra : CADENA
+fin PALABRA
