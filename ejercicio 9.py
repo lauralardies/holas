@@ -1,3 +1,5 @@
+# Ejercicio 9 Parte 1 :
+
 Algoritmo indice_palabra
   # Creamos un algoritmo que da una lista de palabras que empiezan por una letra dada. 
   # Como las palabrasd el diccionario están ordenadas alfabéticamente, el algoritmo solo tiene que recorrer la tabla hasta encontrar las palabras que comienzan con la inicial dada.
@@ -76,5 +78,16 @@ postcondicion
     (
       inicio ≤ Resultado ≤ índice_max(diccionario) y ítem(diccionario[Resultado], 1) = inicial
     )
-    
-fin indice_palabra
+
+fin indice_palabra 
+
+# Ejercicio 9 Parte 2 :
+# Definimos el tipo PALABRA y modificiamos el algoritmo anterior
+
+tipo PALABRA estructura
+  anterior : ENTERO
+  # El índice de la palabra que precede a esta palabra
+  siguiente : ENTERO
+  # El índice de la palabra siguiente
+  palabra : CADENA
+fin PALABRA
