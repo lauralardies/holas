@@ -215,3 +215,42 @@ fin huérfanos
 
 # Ejercicio 10 Parte 5
 
+Algoritmo padre
+
+variable
+	identidad : IDENTIDAD 
+  # La identidad para la que se busca el 'padre'
+	los_padres : MATRIZ[ENTERO][1, MAX_HOMONIMOS][1,2]
+  # Los identificadores del 'padre' de las personas de identidad 'Jaime MARTIN'. Supone como máximo MAX_HOMONIMOS en la base para 'identidad'.
+
+inicializacion
+	identidad.nombre ← 'Jaime'
+	identidad.apellido ← 'MARTIN'
+	los_padres ← padre(familias, identidad)
+
+realizacion
+  hasta que
+    familias[i].identificador = VACIO
+    o si no
+    i > MAX
+  repetir
+    si
+        familia[i].identificador ≠ BORRADO
+      y entonces
+      (
+        familia[i].identidad.nombre = identidad.nombre
+        y
+        familia[i].identidad.apellido = identidad.apellido
+      )
+
+    entonces
+      Resultado[j, 1] ← familia[i].identificador
+      Resultado[j, 2] ← familia[i].padre
+      j ← j + 1
+
+    fin si
+
+    i ← i + 1
+  fin repetir
+
+fin padre
