@@ -71,3 +71,43 @@ postcondición
     entre `edad_min' y `edad_max' años		
     )
 fin edades
+
+algoritmo envejecer	
+# Envejece la población un año.
+Entrada	
+  familias : TABLA[PERSONA]
+precondición	
+  familias ≠ NULO
+constante	
+  MIN : ENTERO ← índice_min(familias)	
+  MAX : ENTERO ← índice_max(familias)	  
+    INFINITO : ENTERO ← ENTERO_MIN		
+  # El número entero más pequeño utilizable	
+  HUERFANO : ENTERO ← INFINITO	  
+  BORRADO : ENTERO ← HUERFANO + 1	    
+  VACIO : ENTERO ← HUERFANO + 2
+variable	
+  i : ENTERO	# Índice de la siguiente celda a tratar
+  
+inicialización	
+  i ← MIN
+realización	
+  hasta que 		
+      familias[i].identificador = VACIO 	    
+    o si no		
+      i > MAX		
+      invariante		
+        ???		
+      variante de control			
+        MAX – i + 1	
+  repetir		
+      si		    
+        familias[i].identificador ≠ BORRADO		
+      entonces		    
+        familias[i].edad ← familias[i].edad + 1		
+      fin si		
+        i ← i + 1	
+    fin repetir
+postcondición	
+  Se han incrementado todos los atributos `edad' de las celdas	ni VACIO ni BORRADO
+fin envejecer
