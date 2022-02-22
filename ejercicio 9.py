@@ -103,6 +103,8 @@ tipo PALABRA estructura
   palabra : CADENA
 fin PALABRA
 
+
+
 Algoritmo indice_palabra
 
 Entrada 
@@ -186,6 +188,8 @@ postcondicion
 
 fin indice_palabra 
 
+
+
 # En nuestro nuevo algoritmo tenemos una función nueva que no está definida : inicializar(). Vamos a definirla
 
 inicializar(diccionario : TABLA[PALABRA])
@@ -222,6 +226,8 @@ postcondición
 
 fin inicializar
 
+
+
 # Ahora estamos ante otra función nueva. esta_libre(). La definimos:
 
 esta_libre(diccionario : TABLA[PALABRA])
@@ -243,3 +249,22 @@ inicialización
 
 realización
   # ¿Todas las celdas se indexan a sí mismas?
+  mientras que i ≤ I_MAX y entonces Resultado = VERDADERO repetir
+    Resultado ← (diccionario[i].anterior = i y diccionario[i].siguiente = i)
+    
+    i ← i + 1
+  fin repetir
+
+postcondición
+    # Ninguna palabra en la tabla : el diccionario está vacío
+    está_vacío(diccionario)
+
+    # Ninguna celda ocupada
+    (∀k ∈ ℤ)(índice_min(diccionario) < k ≤ índice_max(diccionario) => diccionario[k].anterior = diccionario[k].siguiente = k)
+
+Resultado ←  
+  (
+    diccionario[índice_min(diccionario)].anterior = diccionario[índice_min(diccionario)].siguiente = índice_min(diccionario)
+  )
+
+fin está_libre
