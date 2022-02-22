@@ -269,19 +269,29 @@ Resultado ←
 
 fin está_libre
 
+
+
+
+
+
+# Ejercicio 9 Parte 3
+
 insertar    
   (      
     k : ENTERO ;      
     diccionario : TABLA[PALABRA] ;      
     situación : ENTERO    
-    )    
-    # Insertar la palabra de índice `k' delante `diccionario[situación]'.
+  )    
+  # Insertar la palabra de índice 'k' delante 'diccionario[situación]'.
+
 Precondición    
-  está_definido(diccionario)    
-  índice_válido(diccionario, k)    
-  índice_válido(diccionario, situación)
+  esta_definido(diccionario)    
+  indice_valido(diccionario, k)    
+  indice_valido(diccionario, situación)
+
 variable    
   anterior : ENTERO # Copia de seguridad de un índice
+
 realización    
   # Inserción de palabra_3 entre palabra_1 y palabra_2
 
@@ -289,35 +299,48 @@ realización
   anterior ← diccionario[situación].anterior # 0:s 
 
   # Enlace de palabra_1 hacia palabra_3    
-  diccionario[anterior].siguiente ← k   # 1  
+  diccionario[anterior].siguiente ← k # 1  
 
-  # enlaces de palabra_3 hacia palabra_1 y palabra_2    
+  # enlaces de palabra_3 hacia palabra_1 y palabra_2
   diccionario[k].anterior ← anterior # 2    
-  diccionario[k].siguiente ← situación    # 3  
+  diccionario[k].siguiente ← situación # 3  
     
   # enlace de palabra_2 hacia palabra_3    
-  diccionario[situación].anterior ← k  # 4 
+  diccionario[situación].anterior ← k # 4
+
 fin insertar
 
+
+
+
+
+# Ejercicio 9 Parte 4
+
 eliminación(ca : CADENA ; diccionario : TABLA[PALABRA])    
-# Elimina `ca' del `diccionario'.
+# Elimina 'ca' del 'diccionario'.
+
 Precondición    
-    ca ≠ NULO    
-    está_definido(diccionario)    
-    no está_vacío(diccionario)
+  ca ≠ NULO    
+  esta_definido(diccionario)    
+  no esta_vacio(diccionario)
+
 constante    
-    I_MIN : ENTERO ← índice_min(diccionario)    
-    I_MAX : ENTERO ← índice_max(diccionario)
+  I_MIN : ENTERO ← índice_min(diccionario)    
+  I_MAX : ENTERO ← índice_max(diccionario)
+
 variable    
-    situación : ENTERO # El índice de la palabra a eliminar
+  situación : ENTERO # El índice de la palabra a eliminar
+
 realización    
-    situación ← índice_palabra(ca, diccionario)    
-    si        
-        situación ≠ AUSENTE    
-    entonces        
-        eliminar(diccionario, situación)    
-    fin si
+  situación ← índice_palabra(ca, diccionario)    
+  si        
+    situación ≠ AUSENTE    
+  entonces        
+    eliminar(diccionario, situación)    
+  fin si
+
 postcondición    
     antiguo(ca) = ca    
-    La palabra de valor `ca' se ha eliminado de `diccionario'
+    La palabra de valor 'ca' se ha eliminado de 'diccionario'
+
 fin eliminación
