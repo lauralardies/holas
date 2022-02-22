@@ -298,3 +298,26 @@ realización
   # enlace de palabra_2 hacia palabra_3    
   diccionario[situación].anterior ← k  # 4 
 fin insertar
+
+eliminación(ca : CADENA ; diccionario : TABLA[PALABRA])    
+# Elimina `ca' del `diccionario'.
+Precondición    
+    ca ≠ NULO    
+    está_definido(diccionario)    
+    no está_vacío(diccionario)
+constante    
+    I_MIN : ENTERO ← índice_min(diccionario)    
+    I_MAX : ENTERO ← índice_max(diccionario)
+variable    
+    situación : ENTERO # El índice de la palabra a eliminar
+realización    
+    situación ← índice_palabra(ca, diccionario)    
+    si        
+        situación ≠ AUSENTE    
+    entonces        
+        eliminar(diccionario, situación)    
+    fin si
+postcondición    
+    antiguo(ca) = ca    
+    La palabra de valor `ca' se ha eliminado de `diccionario'
+fin eliminación
