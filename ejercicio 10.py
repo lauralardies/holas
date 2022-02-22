@@ -254,3 +254,108 @@ realizacion
   fin repetir
 
 fin padre
+
+
+
+
+# Ejercicio 10 parte 6
+
+Algoritmo hermanos(identidad, familias)
+	# Los identificadores de los hermanos y hermanas de 'identidad'.
+
+Entrada
+	identidad : IDENTIDAD	# Persona para la que buscan hermanos
+	familias : TABLA[PERSONA] # La tabla a observar
+
+# Los identificadores de los hermanos y hermanas de una 'identidad'
+Resultado : MATRIZ[ENTERO][1, MAX_HOMONIMOS][1, MAX_HERMANOS]
+
+constante
+	MAX_HOMONIMOS : ENTERO ← ???
+	MAX_HERMANOS   : ENTERO ← ???
+
+inicialización
+	Resultado[1,1] ← VACIO # Todavía no hay hermanos registrados
+
+variable
+	identidad : IDENTIDAD 
+  # La identidad para la que se busca el 'padre'
+	los_padres : MATRIZ[ENTERO][1, MAX_HOMONIMOS][1,2]
+	# Los identificadores del 'padre' de estas personas
+	un_padre:ENTERO
+	# El identificador de un `padre' de la matriz 'los_padres'
+
+realización
+	los_padres ← padre(familias, identidad)
+  Hasta que i > MAX_HOMONIMOS o si no los_padres[i,1 = VACIO repetir
+    afirmación
+      i ≤ MAX_HOMONIMOS
+      los_padres[i, 1] ≠ VACIO
+
+    identificador ← los_padres[i, 1]
+    # Identificador de 'identidad' para la que buscan hermanos
+    un_padre ← los_padres[i, 2]
+    # El padre para el que se buscan los hijos
+    Resultado[i] ← unos_hermanos(familias, identificador, un_padre)
+    # Cálculo de los hermanos asociados a 'identificador'
+
+    i ← i + 1
+  fin repetir
+  Resultado[i,1] ← VACIO 
+  # Marca el final de los datos de la matriz
+
+fin hermanos
+
+# En el algoritmo anterior se ha nombrado una función que no está definida : unos_hermanos() vamos a definirla
+
+Algoritmo unos_hermanos
+	# Calcula los hermanos de padre 'padre' de los hermanos de 'identificador'
+
+Entrada
+	familias : TABLA[PERSONA]
+	identificador : ENTERO 
+  # Persona para la que queremos hermanos
+	padre : ENTERO 
+  # Identificador del padre de los hermanos
+
+Resultado : TABLA[ENTERO] # Identificadores miembros de los hermanos
+
+constante
+	MAX : ENTERO ← índice_max(familias)
+
+variable
+	persona : ENTERO	 # Un identificador de persona
+	i : ENTERO	# siguiente hermano/a a registrar
+
+inicialización
+	Resultado[1] ← identificador
+	i ← 1		# Índice del último hermano identificado
+	j ← índice_min(familias)
+
+realización
+	persona ← familias[j].identificador
+		# siguiente persona a observar en `familias'
+
+	hasta que persona = VACIO o si no j > MAX repetir
+		invariante
+			???
+		variante de control
+			MAX – i + 1
+
+		si
+			persona ≠ BORRADO
+		  y
+			familias[j].padre = padre
+		entonces
+			i ← i + 1
+			Resultado[i] ← persona
+		fin si
+	
+		j ← j + 1
+	fin repetir
+
+	Resultado[i + 1] ← VACIO # Marca el final de los hermanos
+
+postcondición
+	
+fin unos_hermanos
