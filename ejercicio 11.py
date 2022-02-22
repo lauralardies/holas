@@ -51,27 +51,35 @@ poscondicion
 
 fin mcd
 
+
+
+
+# Ejercicio 11 Parte 2
+
 Algoritmo resto_2(a, b : ENTERO) : ENTERO    
-    # El resto de la división euclidiana de `a' por `b'.    
-    #
-    # b x q ≤ a < b x (q+1) y r = a — b x q =>     
-    # a — b x (q+1) < 0 et r = a — b x (q+1) + b
+  # El resto de la división euclidiana de 'a' por 'b'.    
+  # b x q ≤ a < b x (q+1) y r = a — b x q => a — b x (q+1) < 0 et r = a — b x (q+1) + b
+
 precondición      
-    a ≥ 0 ; b > 0
+  a ≥ 0 ; b > 0
+
 inicialización    
-    Resultado ← a
+  Resultado ← a
+
 realización    
-    repetir        
-        Resultado ← Resultado – b    
-    hasta que        
-        Resultado < 0    
-    fin repetir    
-    afirmación        
-        Resultado = a — b x (cociente(a, b) + 1)
-    Resultado ← Resultado + b    
-    afirmación        
-        Resultado = a — b x (cociente(a, b) + 1) + b =>         
-        Resultado = a — b x  cociente(a, b)
+  repetir        
+    Resultado ← Resultado – b    
+  hasta que        
+    Resultado < 0    
+  fin repetir    
+  afirmación        
+    Resultado = a — b x (cociente(a, b) + 1)
+
+  Resultado ← Resultado + b    
+  afirmación        
+    Resultado = a — b x (cociente(a, b) + 1) + b => Resultado = a — b x  cociente(a, b)
+
 postcondición    
     Resultado = a – b x cociente(a, b)
+    
 fin resto_2
