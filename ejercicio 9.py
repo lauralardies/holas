@@ -268,3 +268,33 @@ Resultado ←
   )
 
 fin está_libre
+
+insertar    
+  (      
+    k : ENTERO ;      
+    diccionario : TABLA[PALABRA] ;      
+    situación : ENTERO    
+    )    
+    # Insertar la palabra de índice `k' delante `diccionario[situación]'.
+Precondición    
+  está_definido(diccionario)    
+  índice_válido(diccionario, k)    
+  índice_válido(diccionario, situación)
+variable    
+  anterior : ENTERO # Copia de seguridad de un índice
+realización    
+  # Inserción de palabra_3 entre palabra_1 y palabra_2
+
+  # Copia de seguridad del enlace de palabra_2 hacia palabra_1    
+  anterior ← diccionario[situación].anterior # 0:s 
+
+  # Enlace de palabra_1 hacia palabra_3    
+  diccionario[anterior].siguiente ← k   # 1  
+
+  # enlaces de palabra_3 hacia palabra_1 y palabra_2    
+  diccionario[k].anterior ← anterior # 2    
+  diccionario[k].siguiente ← situación    # 3  
+    
+  # enlace de palabra_2 hacia palabra_3    
+  diccionario[situación].anterior ← k  # 4 
+fin insertar
