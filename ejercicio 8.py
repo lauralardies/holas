@@ -76,3 +76,31 @@ entonces
     dimensión ← i
 fin si
 
+postcondición    
+  # `ca' y `separador' no se modifican    
+  antiguo(ca) = ca    
+  antiguo(separador) = separador    
+  # el tamaño de `componentes' es suficiente    
+  índice_min(componentes) + dimensión – 1≤ índice_max(componentes)    
+  # Solo se modifican las `dimensión' primeras celdas de    
+  # `componentes'    
+  son_idénticas        
+          (          
+            componentes,          
+            índice_min(componentes) + dimensión,          
+            índice_max(componentes),          
+            antiguo(componentes),          
+            índice_min(componentes) + dimensión,          
+            índice_max(componentes)        
+          )    
+  # `ca' es igual a la composición de las `dimensión' primeras    
+  # celdas de `componentes'    
+  ca = componer(                   
+    sub_tabla                       
+    (                         
+      componentes,                          
+      índice_min(componentes),                         
+      índice_min(componentes) + dimensión – 1                       ),                   
+      separador                 
+      )
+fin descomponer
