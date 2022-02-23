@@ -3,8 +3,7 @@
 La dirección de GitHub para este repositorio es la siguiente: [GitHub](https://github.com/lauralardies/iteracion)
 https://github.com/lauralardies/iteracion
 
-Y el enlace en replit: [Replit](https://replit.com/@MariaRamon/iteracion-1#README.md)
-https://replit.com/@MariaRamon/iteracion-1#README.md
+Y el enlace en replit: https://replit.com/@MariaRamon/iteracion-4
 
 Ejercicio 7: Cambiamos un número entero (n) a otro número en base mayor o igual a 2.
 
